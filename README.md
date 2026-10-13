@@ -2,7 +2,7 @@
 
 PortalKontes: galeri entri kontes desain web — beberapa konsep untuk satu brief, dinilai berdampingan seperti di ruang juri.
 
-**Demo live:** https://www.pintuweb.com/kontes-desain
+**Demo live:** https://www.pintuweb.id/kontes-desain
 
 ![Tangkapan layar PortalKontes](public/og.jpg)
 
@@ -48,4 +48,4 @@ Buka http://localhost:3000. Untuk build produksi: `npm run build` lalu `npm star
 
 ---
 
-Dibuat oleh [PintuWeb](https://www.pintuweb.com), jasa pembuatan website.
+Dibuat oleh [PintuWeb](https://www.pintuweb.id), jasa pembuatan website.
