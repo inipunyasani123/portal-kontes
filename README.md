@@ -14,15 +14,15 @@ PortalKontes: galeri entri kontes desain web — beberapa konsep untuk satu brie
 
 ## Varian yang dipamerkan (9)
 
-- [EthyleneAbsorber](https://absorber-dickson.vercel.app)
-- [EthyleneAbsorber](https://absorber-divine.vercel.app)
-- [EthyleneAbsorber](https://absorber-premium.vercel.app)
-- [EthyleneAbsorber](https://absorber-segar.vercel.app)
-- [Positive Crave](https://crave-amber-mu.vercel.app)
-- [Positive Crave](https://crave-close.vercel.app)
-- [Positive Crave](https://crave-grace.vercel.app)
-- [Positive Crave](https://crave-lumen.vercel.app)
-- [Positive Crave](https://crave-noir.vercel.app)
+- [EthyleneAbsorber](https://absorber-dickson.pintuweb.id)
+- [EthyleneAbsorber](https://absorber-divine.pintuweb.id)
+- [EthyleneAbsorber](https://absorber-premium.pintuweb.id)
+- [EthyleneAbsorber](https://absorber-segar.pintuweb.id)
+- [Positive Crave](https://crave-amber.pintuweb.id)
+- [Positive Crave](https://crave-close.pintuweb.id)
+- [Positive Crave](https://crave-grace.pintuweb.id)
+- [Positive Crave](https://crave-lumen.pintuweb.id)
+- [Positive Crave](https://crave-noir.pintuweb.id)
 
 ## Halaman
 

@@ -4,7 +4,7 @@
 const nextConfig = {
   basePath: '/kontes-desain',
   async redirects() {
-    // Alamat lama portal-kontes.vercel.app di luar basePath -> alamat utama.
+    // Alamat lama portal-kontes.pintuweb.id di luar basePath -> alamat utama.
     return [
       { source: '/', destination: 'https://www.pintuweb.id/kontes-desain', basePath: false, permanent: true },
       { source: '/:lama((?!kontes-desain(?:/|$)).+)', destination: 'https://www.pintuweb.id/kontes-desain', basePath: false, permanent: true },
