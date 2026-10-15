@@ -1,34 +1,41 @@
 import './globals.css';
 import { Zilla_Slab, Inter } from 'next/font/google';
+import { briefs } from './components/templates-data';
 
 const zilla = Zilla_Slab({ subsets: ['latin'], variable: '--font-zilla', weight: ['500', '600', '700'] });
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
-const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":"PortalKontes","description":"Galeri entri kontes desain web","url":"https://www.pintuweb.id/kontes-desain","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://www.pintuweb.id"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PintuWeb","item":"https://www.pintuweb.id"},{"@type":"ListItem","position":2,"name":"Kontes Desain","item":"https://www.pintuweb.id/kontes-desain"}]}};
+// Merek di hasil pencarian & pratinjau tautan = PintuWeb. Jumlah entri dihitung dari data, bukan ditulis tangan.
+const URL_PORTAL = 'https://www.pintuweb.id/kontes-desain';
+const ENTRI = briefs.reduce((n, b) => n + b.entri.length, 0);
+const TITLE = `Kontes Desain Website: ${ENTRI} Konsep Siap Coba | PintuWeb`;
+const DESCRIPTION = `${ENTRI} konsep website live dari ${briefs.length} brief kontes desain, dinilai berdampingan seperti di ruang juri. Lihat cara PintuWeb menjawab satu brief dengan beberapa konsep.`;
+
+const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":TITLE,"description":DESCRIPTION,"url":URL_PORTAL,"inLanguage":"id-ID","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://www.pintuweb.id"},"publisher":{"@type":"Organization","name":"PintuWeb","url":"https://www.pintuweb.id"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PintuWeb","item":"https://www.pintuweb.id"},{"@type":"ListItem","position":2,"name":"Kontes Desain","item":URL_PORTAL}]}};
 
 export const metadata = {
-  metadataBase: new URL("https://www.pintuweb.id/kontes-desain"),
-  title: "PortalKontes — Galeri Entri Kontes Desain Web",
-  description: "PortalKontes: galeri entri kontes desain web — beberapa konsep untuk satu brief, dinilai berdampingan seperti di ruang juri.",
-  applicationName: "PortalKontes",
+  metadataBase: new URL(URL_PORTAL),
+  title: { default: TITLE, template: '%s | PintuWeb' },
+  description: DESCRIPTION,
+  applicationName: "PintuWeb",
   keywords: ["kontes desain web", "galeri desain", "entri kontes", "portofolio desain"],
-  authors: [{ name: "PortalKontes" }],
-  creator: "PortalKontes",
-  publisher: "PortalKontes",
-  alternates: { canonical: "https://www.pintuweb.id/kontes-desain" },
+  authors: [{ name: "PintuWeb", url: "https://www.pintuweb.id" }],
+  creator: "PintuWeb",
+  publisher: "PintuWeb",
+  alternates: { canonical: URL_PORTAL },
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://www.pintuweb.id/kontes-desain",
-    siteName: "PortalKontes",
-    title: "PortalKontes — Galeri Entri Kontes Desain Web",
-    description: "PortalKontes: galeri entri kontes desain web — beberapa konsep untuk satu brief, dinilai berdampingan seperti di ruang juri.",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "PortalKontes — Galeri Entri Kontes Desain Web" }],
+    url: URL_PORTAL,
+    siteName: "PintuWeb",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: TITLE }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PortalKontes — Galeri Entri Kontes Desain Web",
-    description: "PortalKontes: galeri entri kontes desain web — beberapa konsep untuk satu brief, dinilai berdampingan seperti di ruang juri.",
+    title: TITLE,
+    description: DESCRIPTION,
     images: ["/og.jpg"],
   },
   robots: {

@@ -4,16 +4,17 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Trophy, ArrowDown, ArrowUpRight, MessageCircle, Gavel, Landmark, ChevronDown } from 'lucide-react';
 import { briefs, gambarEntri } from './components/templates-data';
+import { LANJUT, GALERI_LAIN, PINTUWEB } from './components/pintuweb';
 
 const WA = 'https://wa.me/6285190931399?text=Halo%2C%20saya%20ingin%20mengadakan%20kontes%20desain%20web%20untuk%20brand%20saya';
 
 const TANYA = [
   { q: 'Apa untungnya kontes dibanding pesan satu desain?', a: 'Kamu melihat beberapa interpretasi nyata atas brief yang sama — bukan satu taruhan. Konsep yang menang adalah yang benar-benar paling pas di matamu, bukan sekadar yang pertama jadi.' },
-  { q: 'Berapa konsep yang saya terima?', a: 'Umumnya 3–5 konsep website utuh yang bisa diklik dan dijelajahi, bukan sekadar gambar mockup. Jumlah pastinya menyesuaikan skala brief dan kesepakatan di awal.' },
+  { q: 'Berapa konsep yang saya terima?', a: 'Umumnya 3–5 konsep berupa halaman live yang bisa diklik dan dijelajahi, bukan sekadar gambar mockup. Jumlah pastinya menyesuaikan skala brief dan kesepakatan di awal.' },
   { q: 'Berapa biayanya?', a: 'Paket Konsep Desain Website PintuWeb Rp1,25 juta–Rp2,5 juta untuk 3–5 konsep live atas satu brief. Konsep juara bisa langsung dilanjutkan ke paket website; angka pastinya tertulis di penawaran sebelum mulai.' },
   { q: 'Berapa lama prosesnya?', a: 'Umumnya 3–5 hari kerja sampai semua konsep siap dinilai, tergantung panjang brief dan jumlah konsep. Sebelum mulai, kami kirim jadwalnya, termasuk berapa lama pemolesan setelah kamu memilih juara.' },
-  { q: 'Bagaimana jika tidak ada konsep yang saya suka?', a: 'Feedback-mu jadi arah revisi: konsep terdekat kami rombak sesuai catatanmu. Prinsip kami sederhana — kontes selesai ketika ada karya yang memenangkan hatimu.' },
-  { q: 'Konsep yang kalah jadi milik siapa?', a: 'Konsep juara beserta source code menjadi milikmu penuh. Konsep lain tetap arsip galeri kami — bisa kamu tebus terpisah jika ternyata ingin memakainya juga.' },
+  { q: 'Bagaimana jika tidak ada konsep yang saya suka?', a: 'Pilih konsep yang paling mendekati, lalu catatanmu jadi arah revisi: paket ini mencakup 1× revisi pada konsep terpilih. Perombakan di luar itu kami bicarakan dan sepakati biayanya lebih dulu, sebelum dikerjakan.' },
+  { q: 'Konsep yang kalah jadi milik siapa?', a: 'Konsep yang tidak terpilih tetap menjadi arsip galeri kami — bisa kamu tebus terpisah lewat penawaran bila ternyata ingin memakainya juga. Untuk konsep juara, kamu mendapat hak pakai desainnya setelah pelunasan; bila dilanjutkan ke paket website, website beserta source code-nya menjadi milikmu setelah pelunasan paket itu.' },
 ];
 
 export default function PortalKontes() {
@@ -35,7 +36,10 @@ export default function PortalKontes() {
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
           <a href="#top" className="flex items-center gap-2.5 font-display text-xl font-semibold">
             <span className="plakat grid h-9 w-9 place-items-center rounded"><Trophy size={16} /></span>
-            PortalKontes
+            <span className="flex flex-col leading-none">
+              PintuWeb{' '}
+              <span className="mt-1 font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-kuningan-ink">Kontes Desain</span>
+            </span>
           </a>
           <div className="hidden items-center gap-6 text-sm font-semibold text-mutedk md:flex" role="navigation" aria-label="Navigasi">
             <a href="#galeri" className="transition hover:text-kuningan">Galeri</a>
@@ -137,8 +141,8 @@ export default function PortalKontes() {
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[
               { icon: Landmark, title: 'Klien memberi brief', desc: 'Cerita tentang produk, target pasar, dan rasa yang diinginkan.' },
-              { icon: Gavel, title: 'Kami kirim beberapa konsep', desc: 'Tiap konsep dieksekusi penuh sebagai website nyata — bukan sekadar mockup.' },
-              { icon: Trophy, title: 'Klien memilih juara', desc: 'Konsep terpilih dipoles hingga final dan siap diluncurkan.' },
+              { icon: Gavel, title: 'Kami kirim beberapa konsep', desc: 'Tiga sampai lima konsep, masing-masing berupa halaman live yang bisa diklik — bukan sekadar mockup.' },
+              { icon: Trophy, title: 'Klien memilih juara', desc: 'Konsep terpilih direvisi sekali sesuai catatanmu, lalu bisa dilanjutkan ke paket website.' },
             ].map((s, i) => (
               <motion.div key={s.title} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="border border-arang/10 bg-galeri p-7 text-center">
                 <span className="plakat mx-auto grid h-12 w-12 place-items-center rounded-full"><s.icon size={20} /></span>
@@ -195,7 +199,10 @@ export default function PortalKontes() {
           <div>
             <p className="flex items-center justify-center gap-2 font-display text-lg font-semibold text-galeri sm:justify-start">
               <span className="plakat grid h-8 w-8 place-items-center rounded"><Trophy size={14} /></span>
-              PortalKontes
+              <span className="flex flex-col text-left leading-none">
+                PintuWeb{' '}
+                <span className="mt-1 font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-kuningan">Kontes Desain</span>
+              </span>
             </p>
             <p className="mt-2 text-sm leading-relaxed">Galeri entri kontes desain web — satu brief, banyak cara memenangkannya.</p>
           </div>
@@ -215,8 +222,29 @@ export default function PortalKontes() {
             </ul>
           </div>
         </div>
-        <p className="mt-10 border-t border-galeri/10 pt-5 text-center text-xs text-galeri/70">
-          © {new Date().getFullYear()} PortalKontes · bagian dari PintuWeb — biar karya yang bicara.
+        {/* Lanjut di PintuWeb: harga paket, semua demo, dan galeri lain di situs utama */}
+        <nav aria-labelledby="lanjut-pintuweb" className="mx-auto mt-10 max-w-7xl border-t border-galeri/10 pt-8 text-center text-sm sm:text-left">
+          <p id="lanjut-pintuweb" className="text-xs font-bold uppercase tracking-[0.2em] text-kuningan">Lanjut di PintuWeb</p>
+          <ul className="mt-4 flex flex-wrap justify-center gap-3 sm:justify-start">
+            {LANJUT.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="inline-flex items-center gap-1.5 rounded border border-galeri/25 px-3.5 py-1.5 font-display text-sm font-semibold text-galeri transition hover:border-kuningan hover:text-kuningan">
+                  {l.label} <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-galeri/60">Ruang galeri lain</p>
+          <ul className="mt-2 flex flex-wrap justify-center gap-x-5 gap-y-2 sm:justify-start">
+            {GALERI_LAIN.map((g) => (
+              <li key={g.path}>
+                <a href={`${PINTUWEB}/${g.path}`} className="underline decoration-galeri/25 underline-offset-4 transition hover:text-galeri hover:decoration-kuningan">{g.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <p className="mx-auto mt-8 max-w-7xl border-t border-galeri/10 pt-5 text-center text-xs text-galeri/70">
+          © {new Date().getFullYear()} PintuWeb · Galeri Kontes Desain — biar karya yang bicara.
         </p>
       </footer>
     </div>
