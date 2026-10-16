@@ -88,10 +88,8 @@ export default function PortalKontes() {
               {/* Ringkasan paket: angka dari PAKET (PintuWeb packages.ts) */}
               <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-arang/80">
                 <span>Mulai <strong className="font-display text-base text-kuningan-ink">{PAKET.mulai}</strong></span>
-                <span aria-hidden="true" className="text-kuningan">·</span>
-                <span>{PAKET.konsep} live</span>
-                <span aria-hidden="true" className="text-kuningan">·</span>
-                <span>{PAKET.waktu}</span>
+                <span className="whitespace-nowrap"><span aria-hidden="true" className="mr-2 text-kuningan">·</span>{PAKET.konsep} live</span>
+                <span className="whitespace-nowrap"><span aria-hidden="true" className="mr-2 text-kuningan">·</span>{PAKET.waktu}</span>
               </p>
             </div>
           </div>
