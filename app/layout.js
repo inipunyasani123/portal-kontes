@@ -1,17 +1,32 @@
 import './globals.css';
-import { Zilla_Slab, Inter } from 'next/font/google';
-import { briefs } from './components/templates-data';
+import { Zilla_Slab } from 'next/font/google';
+import { briefs, gambarEntri } from './components/templates-data';
 
-const zilla = Zilla_Slab({ subsets: ['latin'], variable: '--font-zilla', weight: ['500', '600', '700'] });
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const zilla = Zilla_Slab({ subsets: ['latin'], variable: '--font-zilla', weight: '600' }); // satu bobot: judul, plakat, dan tombol memakai 600 (hemat dua unduhan font)
 
 // Merek di hasil pencarian & pratinjau tautan = PintuWeb. Jumlah entri dihitung dari data, bukan ditulis tangan.
 const URL_PORTAL = 'https://www.pintuweb.id/kontes-desain';
 const ENTRI = briefs.reduce((n, b) => n + b.entri.length, 0);
 const TITLE = `Kontes Desain Website: ${ENTRI} Konsep Siap Coba | PintuWeb`;
-const DESCRIPTION = `${ENTRI} konsep website live dari ${briefs.length} brief kontes desain, dinilai berdampingan seperti di ruang juri. Lihat cara PintuWeb menjawab satu brief dengan beberapa konsep.`;
+const DESCRIPTION = `${ENTRI} konsep website live dari ${briefs.length} brief kontes desain, dinilai berdampingan seperti di ruang juri. Lihat cara PintuWeb menjawab satu brief.`;
 
-const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":TITLE,"description":DESCRIPTION,"url":URL_PORTAL,"inLanguage":"id-ID","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://www.pintuweb.id"},"publisher":{"@type":"Organization","name":"PintuWeb","url":"https://www.pintuweb.id"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PintuWeb","item":"https://www.pintuweb.id"},{"@type":"ListItem","position":2,"name":"Kontes Desain","item":URL_PORTAL}]}};
+// CollectionPage + daftar entrinya (ItemList) + jejak. Data dari templates-data, jadi ikut bertambah sendiri.
+const __jsonld = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: TITLE,
+  description: DESCRIPTION,
+  url: URL_PORTAL,
+  inLanguage: "id-ID",
+  isPartOf: { "@type": "WebSite", name: "PintuWeb", url: "https://www.pintuweb.id" },
+  publisher: { "@type": "Organization", name: "PintuWeb", url: "https://www.pintuweb.id" },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: ENTRI,
+    itemListElement: briefs.flatMap((b) => b.entri).map((e, i) => ({ "@type": "ListItem", position: i + 1, name: `${e.name} — ${e.identitas}`, url: e.url, image: `https://www.pintuweb.id${gambarEntri(e)}` })),
+  },
+  breadcrumb: { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "PintuWeb", item: "https://www.pintuweb.id" }, { "@type": "ListItem", position: 2, name: "Kontes Desain", item: URL_PORTAL }] },
+};
 
 export const metadata = {
   metadataBase: new URL(URL_PORTAL),
@@ -47,11 +62,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" className={`${zilla.variable} ${inter.variable}`}>
+    <html lang="id" className={zilla.variable}>
       <body className="antialiased">
-        <main>{children}</main>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(__jsonld) }} />
-        </body>
+        {children}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(__jsonld) }} />
+      </body>
     </html>
   );
 }
