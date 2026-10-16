@@ -14,8 +14,8 @@ export const briefs = [
       },
       {
         no: '02', name: 'Konsep Premium', identitas: 'Etalase', folder: 'absorber-premium', terjual: 0, url: 'https://absorber-premium.pintuweb.id',
-        description: 'Butik tanpa hiasan — kisi garis rambut dan angka besar. Tiap produk dipajang seperti di vitrin, ditemani cerita kasus pelanggan.',
-        halaman: [['/koleksi', 'Koleksi'], ['/catatan', 'Cerita kasus']],
+        description: 'Butik tanpa hiasan — kisi garis rambut dan angka besar. Tiap produk dipajang seperti di vitrin, ditemani skenario penerapan di toko buah, distributor, dan kafe.',
+        halaman: [['/koleksi', 'Koleksi'], ['/catatan', 'Catatan penerapan']],
       },
       {
         no: '03', name: 'Konsep Divine', identitas: 'Plate Botani', folder: 'absorber-divine', terjual: 1, url: 'https://absorber-divine.pintuweb.id',
