@@ -13,8 +13,8 @@ export const wa = (teks) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponen
  */
 export const PAKET = {
   nama: 'Konsep Desain Website',
-  mulai: 'Rp1,25 juta',
-  sampai: 'Rp2,5 juta',
+  mulai: 'Rp1 juta',
+  sampai: 'Rp3 juta',
   waktu: '3–5 hari kerja',
   konsep: '3–5 konsep',
   revisi: '1× revisi',
