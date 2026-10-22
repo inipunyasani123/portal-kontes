@@ -23,13 +23,14 @@ body {
 
 h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
 
-/* Tautan lompat ke konten: tersembunyi sampai difokus papan ketik */
+/* Tautan lompat ke konten: tersembunyi sampai difokus papan ketik. Digeser jauh di atas layar dan tanpa bayangan
+   sampai difokus, jadi tepinya tidak mengintip di tepi atas. */
 .lewati {
-  position: fixed; left: 1rem; top: 0.75rem; z-index: 60; transform: translateY(-160%);
+  position: fixed; left: 1rem; top: 0.75rem; z-index: 60; transform: translateY(calc(-100% - 2rem));
   border-radius: 0.25rem; background: var(--color-arang); color: var(--color-galeri);
-  padding: 0.5rem 1rem; font-weight: 700; font-size: 0.875rem; box-shadow: 0 6px 18px -6px rgba(35, 33, 29, 0.6);
+  padding: 0.5rem 1rem; font-weight: 700; font-size: 0.875rem;
 }
-.lewati:focus { transform: none; }
+.lewati:focus { transform: none; box-shadow: 0 6px 18px -6px rgba(35, 33, 29, 0.6); }
 main:focus { outline: none; }
 
 /* Bingkai galeri: frame gelap + mat putih */
