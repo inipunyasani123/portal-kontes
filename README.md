@@ -49,3 +49,8 @@ Buka http://localhost:3000. Untuk build produksi: `npm run build` lalu `npm star
 ---
 
 Dibuat oleh [PintuWeb](https://www.pintuweb.id), jasa pembuatan website.
+
+## Tautan langsung per kartu (#slug)
+
+`#absorber-segar`, `#absorber-premium`, `#absorber-divine`, `#absorber-dickson`, `#crave-noir`, `#crave-amber`, `#crave-grace`, `#crave-lumen`, `#crave-close`.
+Gambar potret ponsel kartu: `public/images/entri/<slug>-m.webp`; buat variannya dengan `node scripts/gambar-varian.mjs <slug>-m.webp`.

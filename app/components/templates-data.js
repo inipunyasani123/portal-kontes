@@ -65,3 +65,4 @@ export const briefs = [
 ];
 
 export const gambarEntri = (e) => `/kontes-desain/images/entri/${e.folder}.webp`;
+export const gambarPotret = (e) => `/kontes-desain/images/entri/${e.folder}-m.webp`;

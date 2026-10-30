@@ -1,9 +1,25 @@
-import Image from 'next/image';
+import Image, { getImageProps } from 'next/image';
 import { Trophy, ArrowDown, ArrowUpRight, MessageCircle, Gavel, Landmark, ChevronDown, MoveRight } from 'lucide-react';
-import { briefs, gambarEntri } from './components/templates-data';
-import { LANJUT, GALERI_LAIN, PINTUWEB, PAKET, WA_DISPLAY, wa } from './components/pintuweb';
+import { briefs, gambarEntri, gambarPotret } from './components/templates-data';
+import { JejakGaleri, SorotKartu, BilahLengket } from './components/interaktif';
+import { LANJUT, BACA_JUGA, GALERI_LAIN, PINTUWEB, PAKET, WA_DISPLAY, wa } from './components/pintuweb';
 
-const WA = wa('Halo PintuWeb, saya ingin mengadakan kontes desain web untuk brand saya.');
+const WA = wa('Halo PintuWeb, saya tertarik konsep desain website seperti contoh di galeri Konsep Desain. Boleh minta info?');
+const waMirip = (e, proyek) => wa(`Halo PintuWeb, saya tertarik konsep desain website seperti contoh ${e.name} ${proyek} (${e.url}). Boleh minta info?`);
+const SEMUA = briefs.flatMap((b) => b.entri.map((e) => ({ ...e, proyek: b.proyek })));
+
+// Gambar kartu: potret ponsel (< 768 px) atau tangkapan desktop, lewat <picture>.
+function GambarKartu({ e, sizesM, sizesD }) {
+  const alt = `${e.name} — ${e.identitas}: buka konsep live (tab baru)`;
+  const m = getImageProps({ src: gambarPotret(e), alt: '', fill: true, sizes: sizesM });
+  const d = getImageProps({ src: gambarEntri(e), alt, fill: true, sizes: sizesD });
+  return (
+    <picture>
+      <source media="(max-width: 767px)" srcSet={m.props.srcSet} sizes={sizesM} />
+      <img {...d.props} alt={alt} className="object-cover object-top" />
+    </picture>
+  );
+}
 const TOTAL = briefs.reduce((n, b) => n + b.entri.length, 0);
 
 const LANGKAH = [
@@ -30,7 +46,9 @@ const FAQ_LD = {
 function Logo({ kecil = false }) {
   return (
     <>
-      <span className={`plakat grid shrink-0 place-items-center rounded ${kecil ? 'h-8 w-8' : 'h-9 w-9'}`}><Trophy size={kecil ? 14 : 16} aria-hidden="true" /></span>
+      <span className={`grid shrink-0 place-items-center ${kecil ? 'rounded bg-white px-1.5 py-1' : ''}`}>
+        <Image src="/kontes-desain/logo-pintuweb.png" alt="" width={kecil ? 21 : 23} height={kecil ? 28 : 32} unoptimized className={kecil ? 'h-7 w-auto' : 'h-8 w-auto'} />
+      </span>
       <span className="flex flex-col text-left leading-none">
         PintuWeb{' '}
         <span className={`mt-1 font-sans text-[10px] font-bold uppercase tracking-[0.2em] ${kecil ? 'text-kuningan' : 'text-kuningan-ink'}`}>Kontes Desain</span>
@@ -43,14 +61,8 @@ export default function PortalKontes() {
   return (
     <div id="top" className="wall min-h-screen">
       <a href="#konten" className="lewati">Lewati ke konten</a>
-      {/* Jejak: portal ini bagian dari PintuWeb */}
-      <nav aria-label="Jejak" className="bg-arang text-xs text-galeri">
-        <ol className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-1.5 sm:px-6 lg:px-8">
-          <li><a href={PINTUWEB} className="font-semibold underline-offset-4 hover:underline">PintuWeb</a></li>
-          <li aria-hidden="true" className="opacity-60">/</li>
-          <li aria-current="page">Kontes Desain</li>
-        </ol>
-      </nav>
+      <JejakGaleri />
+      <SorotKartu />
 
       <header className="sticky top-0 z-40 border-b border-arang/15 bg-galeri/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-3.5 lg:px-8">
@@ -63,26 +75,26 @@ export default function PortalKontes() {
             <a href="#tanya" className="transition hover:text-kuningan-ink">Tanya Juri</a>
           </nav>
           <a href={WA} target="_blank" rel="noopener noreferrer" className="shrink-0 rounded bg-arang px-4 py-2 text-sm font-bold text-galeri transition hover:bg-kuningan-ink sm:px-5">
-            Adakan Kontes
+            Pesan konsep desain
           </a>
         </div>
       </header>
 
       <main id="konten" tabIndex={-1}>
         {/* Hero */}
-        <section className="px-4 pb-10 pt-10 text-center sm:px-6 sm:pb-12 sm:pt-16">
+        <section id="hero" className="px-4 pb-6 pt-6 text-center sm:px-6 sm:pb-12 sm:pt-16">
           <div className="mx-auto max-w-3xl">
-            <span className="naik plakat inline-block rounded px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em]">
+            <span className="naik plakat hidden rounded px-4 py-1.5 sm:inline-block text-xs font-bold uppercase tracking-[0.2em]">
               Ruang Juri · {briefs.length} brief · {TOTAL} entri
             </span>
-            <h1 className="mt-6 font-display text-[2.5rem] font-semibold leading-[1.08] sm:text-6xl">
+            <h1 className="mt-0 font-display text-[1.9rem] font-semibold leading-[1.1] sm:mt-6 sm:text-6xl">
               Satu brief,<br />banyak cara <span className="italic text-kuningan">memenangkannya</span>.
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-base text-mutedk sm:text-lg">
+            <p className="mx-auto mt-5 hidden max-w-xl text-base text-mutedk sm:block sm:text-lg">
               Beginilah kontes desain bekerja: klien memberi brief, kami menjawab dengan beberapa konsep — dinilai berdampingan di dinding galeri ini.
             </p>
-            <div className="naik naik-2 mt-8 flex flex-col items-center gap-4 sm:mt-9">
-              <a href="#galeri" className="inline-flex items-center gap-2 rounded bg-arang px-8 py-3.5 font-display text-[15px] font-semibold text-galeri transition hover:bg-kuningan-ink">
+            <div className="naik naik-2 mt-4 flex flex-col items-center gap-3 sm:mt-9 sm:gap-4">
+              <a href="#galeri" className="inline-flex items-center gap-2 rounded bg-arang px-8 py-3 font-display text-[15px] font-semibold text-galeri transition hover:bg-kuningan-ink sm:py-3.5">
                 Masuki Galeri <ArrowDown size={15} aria-hidden="true" />
               </a>
               {/* Ringkasan paket: angka dari PAKET (PintuWeb packages.ts) */}
@@ -92,6 +104,23 @@ export default function PortalKontes() {
                 <span className="whitespace-nowrap"><span aria-hidden="true" className="mr-2 text-kuningan">·</span>{PAKET.waktu}</span>
               </p>
             </div>
+          </div>
+          {/* Ponsel: strip demo yang bisa digeser, langsung terlihat di layar pertama */}
+          <div className="mt-4 sm:hidden">
+            <p className="text-left text-[11px] font-bold uppercase tracking-[0.2em] text-kuningan-ink" id="strip-judul">Geser, pilih konsep</p>
+            <ul aria-labelledby="strip-judul" className="-mx-4 mt-2 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:thin]">
+              {SEMUA.map((e) => (
+                <li key={e.folder} className="w-[100px] shrink-0 snap-start text-center">
+                  <a href={`#${e.folder}`} className="block">
+                    <span className="block bg-arang p-[3px] shadow-md"><span className="relative block aspect-[390/560] overflow-hidden bg-white">
+                      <Image src={gambarPotret(e)} alt="" fill sizes="100px" className="object-cover object-top" />
+                    </span></span>
+                    <span className="mt-1.5 block font-display text-[13px] font-semibold leading-tight">{e.name.replace('Konsep ', '')}</span>
+                    <span className="block font-sans text-[10px] font-bold uppercase tracking-wider text-kuningan-ink">{e.proyek === 'EthyleneAbsorber' ? 'Absorber' : 'Crave'}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -115,12 +144,12 @@ export default function PortalKontes() {
                   {/* Ponsel: dinding galeri yang digeser; layar lebar: berjajar, baris terakhir rata tengah */}
                   <ul aria-label={`Entri brief ${b.proyek}`} className="-mx-4 mt-3 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-4 pt-1 [scrollbar-width:thin] sm:mx-0 sm:mt-12 sm:flex-wrap sm:justify-center sm:gap-x-8 sm:gap-y-14 sm:overflow-visible sm:px-0 sm:pb-0">
                     {b.entri.map((e) => (
-                      <li key={e.no} className={`group w-[80%] shrink-0 snap-center text-center sm:w-[calc(50%-1rem)] ${empat ? 'xl:w-[calc(25%-1.5rem)]' : 'lg:w-[calc(33.333%-1.34rem)]'}`}>
+                      <li key={e.no} id={e.folder} data-demo className={`group scroll-mt-28 w-[80%] shrink-0 snap-center text-center sm:w-[calc(50%-1rem)] ${empat ? 'xl:w-[calc(25%-1.5rem)]' : 'lg:w-[calc(33.333%-1.34rem)]'}`}>
                         <a href={e.url} target="_blank" rel="noopener noreferrer" className="block">
                           <div className="frame">
                             <div className="frame-mat">
-                              <div className="relative aspect-[16/11] overflow-hidden">
-                                <Image src={gambarEntri(e)} alt={`${e.name} — ${e.identitas}: buka konsep live (tab baru)`} fill sizes="(max-width: 639px) 78vw, (max-width: 1023px) 46vw, (max-width: 1279px) 30vw, 300px" className="object-cover object-top" />
+                              <div className="relative overflow-hidden max-md:aspect-[4/5] md:aspect-[16/11]">
+                                <GambarKartu e={e} sizesM="(max-width: 639px) 78vw, 46vw" sizesD="(max-width: 1023px) 46vw, (max-width: 1279px) 30vw, 300px" />
                               </div>
                             </div>
                           </div>
@@ -148,6 +177,10 @@ export default function PortalKontes() {
                             </li>
                           ))}
                         </ul>
+                        <p className="mt-3 text-xs text-arang/80">mulai <strong className="font-display text-sm text-kuningan-ink">{PAKET.mulai}</strong> · {PAKET.waktu}</p>
+                        <a href={waMirip(e, b.proyek)} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex min-h-10 items-center gap-1.5 rounded border border-arang px-4 font-display text-sm font-semibold transition hover:bg-arang hover:text-galeri">
+                          <MessageCircle size={14} aria-hidden="true" /> Pesan yang mirip
+                        </a>
                         <p className="mt-2 font-mono text-[11px] text-arang/70">/{e.folder}</p>
                       </li>
                     ))}
@@ -212,7 +245,7 @@ export default function PortalKontes() {
         </section>
       </main>
 
-      <footer className="border-t border-galeri/10 bg-arang px-4 pb-6 pt-10 text-galeri/70 sm:px-6 lg:px-8">
+      <footer className="border-t border-galeri/10 bg-arang px-4 pb-6 max-md:pb-24 pt-10 text-galeri/70 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">
           <div className="col-span-2 sm:col-span-1">
             <p className="flex items-center gap-2 font-display text-lg font-semibold text-galeri"><Logo kecil /></p>
@@ -246,6 +279,12 @@ export default function PortalKontes() {
               </li>
             ))}
           </ul>
+          <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-galeri/70">Baca juga</p>
+          <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
+            {BACA_JUGA.map((l) => (
+              <li key={l.href}><a href={l.href} className="inline-block py-1 underline decoration-galeri/25 underline-offset-4 transition hover:text-galeri hover:decoration-kuningan">{l.label}</a></li>
+            ))}
+          </ul>
           <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-galeri/70">Ruang galeri lain</p>
           <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
             {GALERI_LAIN.map((g) => (
@@ -259,6 +298,7 @@ export default function PortalKontes() {
           © {new Date().getFullYear()} PintuWeb · Galeri Kontes Desain — biar karya yang bicara.
         </p>
       </footer>
+      <BilahLengket waHref={WA} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_LD) }} />
     </div>
   );

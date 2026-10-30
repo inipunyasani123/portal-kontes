@@ -60,6 +60,10 @@ main:focus { outline: none; }
   .tanya[open]::details-content { height: auto; }
 }
 
+/* Sorotan kartu saat dibuka lewat #slug: bingkai kuningan menyala ±2 detik (cincin, bukan kedip) */
+.sorot .frame { outline: 4px solid var(--color-kuningan); outline-offset: 5px; box-shadow: 0 0 0 10px rgba(168, 133, 46, 0.25), 0 18px 40px -18px rgba(35, 33, 29, 0.5); }
+.sorot .plakat { transform: scale(1.06); }
+
 :focus-visible { outline: 3px solid var(--color-kuningan-ink); outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
