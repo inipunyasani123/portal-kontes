@@ -8,7 +8,7 @@ const zilla = Zilla_Slab({ subsets: ['latin'], variable: '--font-zilla', weight:
 const URL_PORTAL = 'https://www.pintuweb.id/kontes-desain';
 const ENTRI = briefs.reduce((n, b) => n + b.entri.length, 0);
 const TITLE = `Kontes Desain Website: ${ENTRI} Konsep Siap Coba | PintuWeb`;
-const DESCRIPTION = `${ENTRI} konsep website live dari ${briefs.length} brief kontes desain, dinilai berdampingan seperti di ruang juri. Lihat cara PintuWeb menjawab satu brief.`;
+const DESCRIPTION = `Kontes desain website: ${ENTRI} pilihan desain live untuk ${briefs.length} usaha. Kamu lihat berdampingan, lalu pilih yang paling cocok.`;
 
 // CollectionPage + daftar entrinya (ItemList) + jejak. Data dari templates-data, jadi ikut bertambah sendiri.
 const __jsonld = {
