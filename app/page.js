@@ -75,7 +75,7 @@ export default function PortalKontes() {
             <a href="#tanya" className="transition hover:text-kuningan-ink">Tanya Jawab</a>
           </nav>
           <a href={WA} target="_blank" rel="noopener noreferrer" className="shrink-0 rounded bg-arang px-4 py-2 text-sm font-bold text-galeri transition hover:bg-kuningan-ink sm:px-5">
-            Pesan konsep desain
+            Pesan<span className="max-[359px]:sr-only"> konsep desain</span>
           </a>
         </div>
       </header>

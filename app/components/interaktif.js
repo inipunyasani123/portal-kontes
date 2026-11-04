@@ -119,6 +119,8 @@ export function BilahLengket({ waHref }) {
   const tampil = lewatHero && !footer;
   return (
     <div
+      role="region"
+      aria-label="Aksi cepat"
       aria-hidden={!tampil}
       inert={!tampil}
       className={`fixed inset-x-0 bottom-0 z-40 border-t-2 border-kuningan bg-arang px-3 pt-2.5 shadow-[0_-8px_24px_-12px_rgba(35,33,29,0.6)] transition duration-300 md:hidden ${tampil ? 'translate-y-0 opacity-100' : 'invisible translate-y-full opacity-0'}`}
